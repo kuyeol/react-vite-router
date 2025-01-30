@@ -8,7 +8,7 @@ export default defineConfig({
   )],
   server: {
     proxy: {
-      "/api": {
+      "/a": {
         target: process.env.LOCAL_API_ORIGIN ?? process.env.API_ORIGIN,
         changeOrigin: true,
       },
