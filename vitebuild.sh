@@ -10,11 +10,18 @@ echo "$dir_name Project setup complete."
 
 
 # Dependency add
+
 pnpm add react-router-dom @tanstack/react-query @tanstack/react-query-devtools axios zustand @hookform/resolvers react-hook-form zod @mui/material @emotion/react @emotion/styled
 
 pnpm add tailwindcss postcss autoprefixer @radix-ui/react-dropdown-menu @radix-ui/react-slot class-variance-authority clsx tailwind-merge -D
 
 pnpm add -D eslint eslint-config-airbnb-typescript eslint-plugin-import eslint-plugin-react-hooks @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint-config-prettier
+
+pnpm install axios
+
+pnpm add react-router-dom
+
+pnpm add @tanstack/react-query-devtools
 
 
 # css  config,js create && init
@@ -35,6 +42,13 @@ cat > .env <<EOL
 VITE_API_URL=http://localhost:8080/api
 VITE_ENV=development
 EOL
+
+
+# test Mock
+npx msw init public/ --sav
+
+pnpm install -D msw
+
 
 # OpenApi Dependency add && Generate api Json
 pnpm add -D @openapitools/openapi-generator-cli
