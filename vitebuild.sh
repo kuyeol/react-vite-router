@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Project Generate
 read -p "Enter new React Name :  " dir_name
 
 pnpm create vite@latest "$dir_name" -- --template react-ts
@@ -7,10 +8,18 @@ cd "$dir_name"
 
 echo "$dir_name Project setup complete."
 
+
+# Dependency add
 pnpm add react-router-dom @tanstack/react-query @tanstack/react-query-devtools axios zustand @hookform/resolvers react-hook-form zod @mui/material @emotion/react @emotion/styled
 
 pnpm add tailwindcss postcss autoprefixer @radix-ui/react-dropdown-menu @radix-ui/react-slot class-variance-authority clsx tailwind-merge -D
+
+pnpm add -D eslint eslint-config-airbnb-typescript eslint-plugin-import eslint-plugin-react-hooks @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint-config-prettier
+
+
+# css  config,js create && init
 npx tailwindcss init -p
+
 echo "/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
@@ -18,23 +27,18 @@ export default {
   plugins: [],
 }" > tailwind.config.js
 
-
-
-pnpm add -D eslint eslint-config-airbnb-typescript eslint-plugin-import eslint-plugin-react-hooks @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint-config-prettier
-
-
-
+# project folder genrate
 mkdir -p src/{api,components,hooks,store,types,utils,routes,pages,features}
 
-
+# .env genrate
 cat > .env <<EOL
 VITE_API_URL=http://localhost:8080/api
 VITE_ENV=development
 EOL
 
-
-
+# OpenApi Dependency add && Generate api Json
 pnpm add -D @openapitools/openapi-generator-cli
+
 npx openapi-generator-cli generate -i http://localhost:8080/v3/api-docs -g typescript-axios -o src/api/generated
 
 
