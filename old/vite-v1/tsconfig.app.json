@@ -23,5 +23,7 @@
     "noUncheckedSideEffectImports": true,"useUnknownInCatchVariables": true
 
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }
